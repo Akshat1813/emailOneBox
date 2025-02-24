@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:5000/emails"; // Adjust if needed
+const BASE_URL = "https://vercel.com/akshat-kumar-nigams-projects/email-one-box-backend/CWCmoMRm4t5XfURSesCxziGA4W8f"; // Adjust if needed
 
 // ✅ Fetch emails by category
 export const fetchEmails = async (category) => {
