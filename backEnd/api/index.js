@@ -1,20 +1,25 @@
 import express from "express";
-import dotenv from "dotenv";
-import connectDB from "../config/db.js"; // Adjust path
+import connectDB from "../config/db.js";
 import emailRoutes from "../routes/emailRoutes.js";
+import dotenv from "dotenv";
 
 dotenv.config();
+connectDB();
 
 const app = express();
 app.use(express.json()); // ✅ Ensure JSON parsing
 
-// ✅ MongoDB must connect inside the request to avoid connection loss
-app.use(async (req, res, next) => {
-  await connectDB();
-  next();
+// ✅ Set up API routes
+app.use("/api/emails/", emailRoutes);
+
+app.get("/api/test", (req, res) => {
+    res.send("Welcome to the Email Aggregator API!");
+    res.json({ message: "API is working!" });
+  });
+
+// ✅ Handle root route
+app.get("/api/", (req, res) => {
+  res.send("Welcome to the Email Aggregator API!");
 });
 
-app.use("/emails", emailRoutes);
-
-// ✅ Serverless function export
 export default app;

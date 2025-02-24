@@ -5,7 +5,7 @@ const Navbar = () => {
 
   const fetchNewEmails = async () => {
     try {
-      await fetch("http://localhost:5000/emails/fetch-emails");
+      await fetch("https://reachinbox-ai-backend.vercel.app/api/emails/fetch-emails");
       alert("Fetching new emails...");
     } catch (error) {
       console.error("❌ Error fetching new emails:", error);

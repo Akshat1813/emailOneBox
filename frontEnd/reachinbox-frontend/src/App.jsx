@@ -4,6 +4,8 @@ import EmailList from "./components/EmailList";
 import EmailDetails from "./components/EmailDetails";
 import Navbar from "./components/Navbar";
 
+
+
 const categories = [
   "Interested",
   "Meeting Booked",
