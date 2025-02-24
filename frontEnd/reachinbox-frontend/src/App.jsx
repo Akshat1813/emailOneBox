@@ -2,7 +2,7 @@ import { useState } from "react";
 import Sidebar from "./components/Sidebar";
 import EmailList from "./components/EmailList";
 import EmailDetails from "./components/EmailDetails";
-import Navbar from "./components/NavBar";
+import Navbar from "./components/Navbar";
 
 const categories = [
   "Interested",
