@@ -20,7 +20,6 @@ export const categorizeEmail = async (emailText) => {
       console.log("⚡ Using Cached Category");
       return cache.get(emailText);
     }
-    console.log("🔑 Using API Key:", process.env.GEMINI_API_KEY); // Debug log
     console.log(`📧 Email: ${emailText.trim().substring(0, 200)}`); // Debug log
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
