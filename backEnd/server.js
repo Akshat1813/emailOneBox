@@ -2,7 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import emailRoutes from "./routes/emailRoutes.js"; // ✅ Ensure correct import
-import cors from "cors";
+// import cors from "cors";
 // ✅ Import the search function
 
 
@@ -11,7 +11,7 @@ connectDB();
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 const app = express();
-app.use(cors()); 
+// app.use(cors()); 
 // ✅ Allow requests from frontend
 app.use(express.json());  // ✅ Ensure JSON parsing
 app.use("/emails", emailRoutes); // ✅ Hook up email routes
