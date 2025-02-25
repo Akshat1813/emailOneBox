@@ -11,7 +11,8 @@ build/
 .env
 **/.env
 
-
+aim.txt
+new.txt
 
 # Logs & cache
 npm-debug.log*
