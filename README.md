@@ -16,7 +16,7 @@ EmailOneBox is a feature-rich onebox email aggregator that synchronizes emails i
 
 ## Technologies Used
 
-- **Backend**: Node.js, Express, MongoDB, IMAP, Elasticsearch
+- **Backend**: Node.js, Express, MongoDB, IMAP, Elasticsearch (Docker)
 - **Frontend**: React, Vite
 - **AI Integration**: Gemini API
 - **Notifications**: Slack Webhook
@@ -85,8 +85,14 @@ EmailOneBox is a feature-rich onebox email aggregator that synchronizes emails i
 
 ### Dashboard View
 ![Dashboard](screenshots/Dashboard.png)
-### Email Content
+
+### Email Body
 ![EmailContent](screenshots/emailContent.png)
+
+### Slack Notification
+![slackNotification](screenshots/slackNotification.png)
+
+
 ## Future Enhancements
 
 - Support for multiple email accounts
