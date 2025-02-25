@@ -53,11 +53,16 @@ export const searchEmails = async (req, res) => {
     const folder = req.query.folder || "INBOX";
     const account = req.query.account || "akshatnigam769@gmail.com";
 
-    console.log("🔍 Search Query:", query, " | Folder:", folder, " | Account:", account);
+    const from = parseInt(req.query.from) || 0; // ✅ Pagination offset (default: 0)
+    const size = parseInt(req.query.size) || 50; // ✅ Number of results per page (default: 50)
+
+    console.log(`🔍 Search Query: ${query}, Folder: ${folder}, Account: ${account}, From: ${from}, Size: ${size}`);
 
     const esQuery = {
       index: "emails",
       body: {
+        from, // ✅ Pagination start point
+        size, // ✅ Number of emails to fetch
         query: {
           bool: {
             must: [
@@ -70,16 +75,13 @@ export const searchEmails = async (req, res) => {
       },
     };
 
-    console.log("📡 Sending query to Elasticsearch:", JSON.stringify(esQuery, null, 2));
-
     const { body } = await elasticClient.search(esQuery);
-    console.log("🔎 Elasticsearch Response:", JSON.stringify(body, null, 2));
-
     res.json({ success: true, results: body.hits.hits.map((hit) => hit._source) });
   } catch (error) {
     console.error("❌ Search API Error:", error);
     res.status(500).json({ error: "Search failed" });
   }
 };
+
 
 // export default elasticClient;

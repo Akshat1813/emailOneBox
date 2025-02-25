@@ -14,7 +14,6 @@ router.get("/fetch-emails", async (req, res) => {
   }
 });
 
-
 // ✅ Route for searching emails in Elasticsearch
 router.get("/search", searchEmails); // 🔍 Hook up the searchEmails function
 

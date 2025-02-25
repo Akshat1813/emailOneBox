@@ -4,9 +4,9 @@
   "main": "index.js",
   "scripts": {
     "start": "vercel dev",
-    "dev": "backEnd/server.js",
+    "dev": "nodemon ./api/index.js",
     "deploy": "vercel --prod",
-    "build": "echo 'No build step needed'"
+     "build": "echo 'Skipping build step for backend'"
   },
   "type": "module",
   "keywords": [],
