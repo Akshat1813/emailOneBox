@@ -4,23 +4,21 @@ dotenv.config();
 
 export const elasticClient = new Client({
   node: "http://localhost:9200",
-  apiVersion: "7.10", // ✅ Ensure compatibility with your ES version
+  apiVersion: "7.10",
 });
 
-// ✅ Function to index an email
 export const indexEmail = async (emailData) => {
   try {
     const response = await elasticClient.index({
       index: "emails",
       body: emailData,
     });
-    console.log(`✅ Email indexed in Elasticsearch! ID: ${response.body._id}`);
+    console.log(`Email indexed in Elasticsearch! ID: ${response.body._id}`);
   } catch (error) {
-    console.error("❌ Elasticsearch Indexing Error:", error);
+    console.error("Elasticsearch Indexing Error:", error);
   }
 };
 
-// ✅ Function to check if an email exists
 export const emailExistsInElasticsearch = async (subject, sender, timestamp) => {
   try {
     const esQuery = {
@@ -39,30 +37,29 @@ export const emailExistsInElasticsearch = async (subject, sender, timestamp) => 
     };
 
     const { body } = await elasticClient.search(esQuery);
-    return body.hits.total.value > 0; // ✅ Return true if email exists
+    return body.hits.total.value > 0;
   } catch (error) {
-    console.error("❌ Elasticsearch Query Error:", error);
-    return false; // Assume not found in case of an error
+    console.error("Elasticsearch Query Error:", error);
+    return false;
   }
 };
 
-// ✅ Function to search emails in Elasticsearch
 export const searchEmails = async (req, res) => {
   try {
     const { query } = req.query;
     const folder = req.query.folder || "INBOX";
     const account = req.query.account || "akshatnigam769@gmail.com";
 
-    const from = parseInt(req.query.from) || 0; // ✅ Pagination offset (default: 0)
-    const size = parseInt(req.query.size) || 50; // ✅ Number of results per page (default: 50)
+    const from = parseInt(req.query.from) || 0;
+    const size = parseInt(req.query.size) || 50;
 
-    console.log(`🔍 Search Query: ${query}, Folder: ${folder}, Account: ${account}, From: ${from}, Size: ${size}`);
+    console.log(`Search Query: ${query}, Folder: ${folder}, Account: ${account}, From: ${from}, Size: ${size}`);
 
     const esQuery = {
       index: "emails",
       body: {
-        from, // ✅ Pagination start point
-        size, // ✅ Number of emails to fetch
+        from,
+        size,
         query: {
           bool: {
             must: [
@@ -78,10 +75,7 @@ export const searchEmails = async (req, res) => {
     const { body } = await elasticClient.search(esQuery);
     res.json({ success: true, results: body.hits.hits.map((hit) => hit._source) });
   } catch (error) {
-    console.error("❌ Search API Error:", error);
+    console.error("Search API Error:", error);
     res.status(500).json({ error: "Search failed" });
   }
 };
-
-
-// export default elasticClient;

@@ -15,11 +15,11 @@ router.get("/callback", async (req, res) => {
     }
 
     const tokens = await getAccessToken(code);
-    console.log("✅ OAuth Authentication Successful!");
+    console.log("OAuth Authentication Successful!");
 
     res.json({ message: "Authentication successful!", tokens });
   } catch (error) {
-    console.error("❌ OAuth Callback Error:", error);
+    console.error("OAuth Callback Error:", error);
     res.status(500).json({ error: "Failed to get access token." });
   }
 });

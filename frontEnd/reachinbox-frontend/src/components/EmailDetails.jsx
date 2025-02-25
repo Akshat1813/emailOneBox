@@ -1,16 +1,13 @@
 import PropTypes from "prop-types";
 import parse from "html-react-parser";
 
-
-
 const EmailDetails = ({ email, onBack }) => {
   if (!email) return <div className="p-4">Select an email to view details.</div>;
   const parser = new DOMParser();
-    const doc = parser.parseFromString(email.body, "text/html");
-    doc.querySelectorAll("meta").forEach((meta) => meta.remove());
+  const doc = parser.parseFromString(email.body, "text/html");
+  doc.querySelectorAll("meta").forEach((meta) => meta.remove());
 
   return (
-    
     <div className="p-4 w-full h-screen bg-white shadow-lg">
       <button
         onClick={onBack}
@@ -25,13 +22,8 @@ const EmailDetails = ({ email, onBack }) => {
       <p className="text-sm text-gray-500">
         <strong>Received:</strong> {new Date(email.timestamp).toLocaleString()}
       </p>
-      {/* <hr className="my-2" /> */}
-
-      {/* ✅ Fix: Use component properly */}
       <div className="mt-4">
-      
-
-    <div>{parse(doc.body.innerHTML)}</div>;
+        <div>{parse(doc.body.innerHTML)}</div>
       </div>
     </div>
   );
@@ -43,7 +35,7 @@ EmailDetails.propTypes = {
     sender: PropTypes.string.isRequired,
     body: PropTypes.string.isRequired,
     timestamp: PropTypes.string.isRequired,
-  }),
+  }).isRequired,
   onBack: PropTypes.func.isRequired,
 };
 

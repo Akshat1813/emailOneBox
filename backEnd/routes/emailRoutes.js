@@ -1,10 +1,9 @@
 import express from "express";
 import { fetchEmails, listenForNewEmails } from "../services/imapService.js";
-import { searchEmails } from "../services/elasticService.js"; // ✅ Import the search function
+import { searchEmails } from "../services/elasticService.js";
 
 const router = express.Router();
 
-// ✅ Route to manually fetch emails from the last 30 days
 router.get("/fetch-emails", async (req, res) => {
   try {
     await fetchEmails();
@@ -14,10 +13,8 @@ router.get("/fetch-emails", async (req, res) => {
   }
 });
 
-// ✅ Route for searching emails in Elasticsearch
-router.get("/search", searchEmails); // 🔍 Hook up the searchEmails function
+router.get("/search", searchEmails);
 
-// ✅ Start real-time email listening when the server starts (Do NOT expose this in an API)
 listenForNewEmails();
 
 export default router;
