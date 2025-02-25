@@ -86,7 +86,7 @@ EmailOneBox is a feature-rich onebox email aggregator that synchronizes emails i
 ### Dashboard View
 ![Dashboard](screenshots/Dashboard.png)
 ### Email Content
-![EmailContent](screeshots/emailContent.png)
+![EmailContent](screenshots/emailContent.png)
 ## Future Enhancements
 
 - Support for multiple email accounts
